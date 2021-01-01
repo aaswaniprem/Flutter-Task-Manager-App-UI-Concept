@@ -1,0 +1,233 @@
+<html>
+<head>
+<title>body.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #000080; font-weight: bold;}
+.s4 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+body.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/cupertino.dart'</span>;
+import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:flutter_gradients/flutter_gradients.dart'</span>;
+import <span class="s1">'package:todo_app_blue/AppColour.dart'</span>;
+import <span class="s1">'package:todo_app_blue/HomePage.dart'</span>;
+import <span class="s1">'package:todo_app_blue/frontpage.dart'</span>;
+
+<span class="s2">// This is the best practice</span>
+import <span class="s1">'../size_config.dart'</span>;
+import <span class="s1">'../splash/components/splash_content.dart'</span>;
+import <span class="s1">'../splash/constants.dart'</span>;
+import <span class="s1">'../splash/components/default_button.dart'</span>;
+
+<span class="s3">class </span>Bodyy <span class="s3">extends </span>StatefulWidget {
+  @override
+  _BodyyState createState() =&gt; _BodyyState();
+}
+
+<span class="s3">class </span>_BodyyState <span class="s3">extends </span>State&lt;Bodyy&gt; {
+  int currentPage = <span class="s4">0</span>;
+
+  List&lt;Map&lt;String, String&gt;&gt; splashData = [
+    {
+      <span class="s1">&quot;text&quot;</span>: <span class="s1">&quot;It is very difficult to manage everything ,find &quot;</span>
+          <span class="s1">&quot;your virtual Manager today for manage your work and time&quot;</span>,
+      <span class="s1">&quot;image&quot;</span>: <span class="s1">&quot;assets/splash1.png&quot;</span>
+    },
+    {
+      <span class="s1">&quot;text&quot;</span>:
+          <span class="s1">&quot;We help people conect with store \naround United State of America&quot;</span>,
+      <span class="s1">&quot;image&quot;</span>: <span class="s1">&quot;assets/splash2.png&quot;</span>
+    },
+    {
+      <span class="s1">&quot;text&quot;</span>: <span class="s1">&quot;We show the easy way to shop. \nJust stay at home with us&quot;</span>,
+      <span class="s1">&quot;image&quot;</span>: <span class="s1">&quot;assets/splash3.png&quot;</span>
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    <span class="s3">return </span>Scaffold(
+      body: SafeArea(
+        child: Container(
+          height: SizeConfig.screenHeight,
+          width: SizeConfig.screenWidth,
+          decoration: BoxDecoration(gradient: AppColor.redbackground),
+          child: Stack(
+            children: [
+              Positioned(
+                top: <span class="s4">0</span>,
+                child: Container(
+                  height: SizeConfig.screenHeight * <span class="s4">0.7</span>,
+                  width: SizeConfig.screenWidth,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft:
+                              Radius.circular(getProportionateScreenHeight(<span class="s4">40.0</span>)),
+                          bottomRight: Radius.circular(
+                              getProportionateScreenHeight(<span class="s4">40.0</span>))),
+                      gradient: AppColor.background2,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColor.backblue.withOpacity(<span class="s4">0.1</span>),
+                          blurRadius: <span class="s4">50.0</span>, <span class="s2">// soften the shadow</span>
+                          spreadRadius: <span class="s4">5.0</span>, <span class="s2">//extend the shadow</span>
+                          offset: Offset(
+                            <span class="s4">5.0</span>, <span class="s2">// Move to right 10  horizontally</span>
+                            <span class="s4">5.0</span>, <span class="s2">// Move to bottom 10 Vertically</span>
+                          ),
+                        )
+                      ]),
+                  child: Column(
+                    children: &lt;Widget&gt;[
+                      Container(
+                        height: SizeConfig.screenHeight * <span class="s4">0.5</span>,
+                        width: SizeConfig.screenWidth,
+                        child: PageView.builder(
+                          onPageChanged: (value) {
+                            setState(() {
+                              currentPage = value;
+                            });
+                          },
+                          itemCount: splashData.length,
+                          itemBuilder: (context, index) =&gt; Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getProportionateScreenWidth(<span class="s4">20.0</span>)),
+                            child: SplashContent(
+                              image: splashData[index][<span class="s1">&quot;image&quot;</span>],
+                              text: splashData[index][<span class="s1">'text'</span>],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: <span class="s4">15</span>),
+                      Expanded(
+                        flex: <span class="s4">1</span>,
+                        child: Container(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getProportionateScreenWidth(<span class="s4">20</span>)),
+                            child: Column(
+                              children: &lt;Widget&gt;[
+                                Spacer(),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(
+                                    splashData.length,
+                                    (index) =&gt; buildDot(index: index),
+                                  ),
+                                ),
+                                Spacer(flex: <span class="s4">3</span>),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                  left: <span class="s4">80</span>,
+                  right: <span class="s4">80</span>,
+                  top: SizeConfig.screenHeight * <span class="s4">0.65</span>,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =&gt; SchoolManagement()));
+                    },
+                    child: Container(
+                      height: getProportionateScreenHeight(<span class="s4">80.0</span>),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: AppColor.redbutton,
+                          ),
+                      width: <span class="s4">80</span>,
+                      child: Icon(Icons.arrow_forward ,
+                      color: Colors.white,
+                      ),
+                    ),
+                  )),
+              Positioned(
+                  bottom: getProportionateScreenHeight(<span class="s4">50.0</span>),
+                  left: <span class="s4">45</span>,
+                  right: <span class="s4">45.0</span>,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [SignupContainer(), SigninContainer()],
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget SigninContainer() {
+    <span class="s3">return </span>Container(
+      height: getProportionateScreenHeight(<span class="s4">48.0</span>),
+      width: getProportionateScreenWidth(<span class="s4">115</span>),
+      decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.circular(getProportionateScreenHeight(<span class="s4">15.0</span>)),
+          gradient: AppColor.bluebutton),
+      child: Center(
+        child: Text(
+          <span class="s1">&quot;Login&quot;</span>,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget SignupContainer() {
+    <span class="s3">return </span>Container(
+      height: getProportionateScreenHeight(<span class="s4">48.0</span>),
+      width: getProportionateScreenWidth(<span class="s4">115</span>),
+      decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.circular(getProportionateScreenHeight(<span class="s4">15.0</span>)),
+          color: Colors.white),
+      child: Center(
+        child: Text(
+          <span class="s1">&quot;Sign Up&quot;</span>,
+          style: TextStyle(
+            color: AppColor.darkblue,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+
+  AnimatedContainer buildDot({int index}) {
+    <span class="s3">return </span>AnimatedContainer(
+      duration: kAnimationDuration,
+      margin: EdgeInsets.only(right: <span class="s4">5</span>),
+      height: <span class="s4">6</span>,
+      width: currentPage == index ? <span class="s4">20 </span>: <span class="s4">6</span>,
+      decoration: BoxDecoration(
+        color: currentPage == index ? AppColor.darkblue : Color(<span class="s4">0xFFD8D8D8</span>),
+        borderRadius: BorderRadius.circular(<span class="s4">3</span>),
+      ),
+    );
+  }
+}
+</pre>
+</body>
+</html>

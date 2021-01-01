@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>settings.gradle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000043; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+settings.gradle</font>
+</center></td></tr></table>
+<pre>include <span class="s1">':app'</span>
+
+<span class="s2">def </span>localPropertiesFile = <span class="s2">new </span>File(rootProject.projectDir, <span class="s1">&quot;local.properties&quot;</span>)
+<span class="s2">def </span>properties = <span class="s2">new </span>Properties()
+
+<span class="s2">assert </span>localPropertiesFile.exists()
+localPropertiesFile.withReader(<span class="s1">&quot;UTF-8&quot;</span>) { reader -&gt; properties.load(reader) }
+
+<span class="s2">def </span>flutterSdkPath = properties.getProperty(<span class="s1">&quot;flutter.sdk&quot;</span>)
+<span class="s2">assert </span>flutterSdkPath != <span class="s2">null</span>, <span class="s1">&quot;flutter.sdk not set in local.properties&quot;</span>
+apply from: <span class="s1">&quot;</span>$flutterSdkPath<span class="s1">/packages/flutter_tools/gradle/app_plugin_loader.gradle&quot;</span>
+</pre>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>AppColour.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AppColour.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+
+<span class="s2">class </span>AppColor {
+  static <span class="s2">final </span>LinearGradient background = LinearGradient(
+    colors: [backwhit, backred.withOpacity(<span class="s3">0.4</span>)],
+    begin: Alignment.topRight,
+    end: Alignment(-<span class="s3">4</span>, <span class="s3">4</span>),
+  );
+
+  static <span class="s2">final </span>LinearGradient splash = LinearGradient(
+    colors: [backred.withOpacity(<span class="s3">0.3</span>), backwhit, backblue],
+    stops: [<span class="s3">0.3</span>, <span class="s3">0.7</span>, <span class="s3">0.7</span>],
+    end: Alignment.topRight,
+    begin: Alignment(<span class="s3">3</span>, <span class="s3">3</span>),
+  );
+
+  static <span class="s2">final </span>LinearGradient redbackground = LinearGradient(
+    colors: [backwhit, backred],
+    begin: Alignment.bottomCenter,
+    end: Alignment(<span class="s3">5</span>, <span class="s3">1</span>),
+  );
+
+  static <span class="s2">final </span>LinearGradient background2 = LinearGradient(
+    colors: [Colors.white, backblue],
+    begin: Alignment.topLeft,
+    end: Alignment(<span class="s3">5</span>, -<span class="s3">4</span>),
+  );
+  static <span class="s2">final </span>LinearGradient bluebutton = LinearGradient(
+    colors: [lightblue, darkblue],
+    begin: Alignment.topLeft,
+    end: Alignment.topRight,
+  );
+
+  static <span class="s2">final </span>LinearGradient orangebutton = LinearGradient(
+    colors: [orange1, orange2],
+    begin: Alignment.topLeft,
+    end: Alignment.topRight,
+  );
+
+  static <span class="s2">final </span>LinearGradient purplebutton = LinearGradient(
+    colors: [purple, darkpurple],
+    begin: Alignment.topLeft,
+    end: Alignment.topRight,
+  );
+
+
+  static <span class="s2">final </span>LinearGradient redbutton = LinearGradient(
+    colors: [backred, darkred],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+
+  static Color darkpurple = Color(<span class="s3">0xff3C5073</span>);
+  static Color purple = Color(<span class="s3">0xff7395c8</span>);
+  static Color orange1 = Color(<span class="s3">0xffFFD099</span>);
+  static Color orange2 = Color(<span class="s3">0xffFE9B4B</span>);
+  static Color backcolor = Colors.red;
+  static Color backred = Color(<span class="s3">0xffFF9082</span>);
+  static Color darkred = Color(<span class="s3">0xffFE705D</span>);
+  static Color textcolor = Color(<span class="s3">0xff1E2843</span>);
+  static Color backwhit = Color(<span class="s3">0xffFAFAFA</span>);
+  static Color backblue = Color(<span class="s3">0xff3EC8FA</span>).withOpacity(<span class="s3">0.6</span>);
+  static Color lightblue = Color(<span class="s3">0xff92E2FF</span>);
+  static Color darkblue = Color(<span class="s3">0xff1DBEF9</span>);
+}
+</pre>
+</body>
+</html>

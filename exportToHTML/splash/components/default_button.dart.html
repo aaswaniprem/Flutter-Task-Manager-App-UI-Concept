@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>default_button.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+default_button.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'../../size_config.dart'</span>;
+import <span class="s1">'../constants.dart'</span>;
+
+
+<span class="s2">class </span>DefaultButton <span class="s2">extends </span>StatelessWidget {
+  <span class="s2">const </span>DefaultButton({
+    Key key,
+    <span class="s2">this</span>.text,
+    <span class="s2">this</span>.press,
+  }) : <span class="s2">super</span>(key: key);
+  <span class="s2">final </span>String text;
+  <span class="s2">final </span>Function press;
+
+  @override
+  Widget build(BuildContext context) {
+    <span class="s2">return </span>SizedBox(
+      width: double.infinity,
+      height: getProportionateScreenHeight(<span class="s3">56</span>),
+      child: FlatButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(<span class="s3">20</span>)),
+        color: kPrimaryColor,
+        onPressed: press,
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: getProportionateScreenWidth(<span class="s3">18</span>),
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+</pre>
+</body>
+</html>

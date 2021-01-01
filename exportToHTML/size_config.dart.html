@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>size_config.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+.s4 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+size_config.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+
+<span class="s2">class </span>SizeConfig {
+  static MediaQueryData _mediaQueryData;
+  static double screenWidth;
+  static double screenHeight;
+  static double defaultSize;
+  static Orientation orientation;
+
+  <span class="s2">void </span>init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData.size.width;
+    screenHeight = _mediaQueryData.size.height;
+    orientation = _mediaQueryData.orientation;
+  }
+}
+
+<span class="s3">// Get the proportionate height as per screen size</span>
+double getProportionateScreenHeight(double inputHeight) {
+  double screenHeight = SizeConfig.screenHeight;
+  <span class="s3">// 812 is the layout height that designer use</span>
+  <span class="s2">return </span>(inputHeight / <span class="s4">812.0</span>) * screenHeight;
+}
+
+<span class="s3">// Get the proportionate height as per screen size</span>
+double getProportionateScreenWidth(double inputWidth) {
+  double screenWidth = SizeConfig.screenWidth;
+  <span class="s3">// 375 is the layout width that designer use</span>
+  <span class="s2">return </span>(inputWidth / <span class="s4">375.0</span>) * screenWidth;
+}
+</pre>
+</body>
+</html>

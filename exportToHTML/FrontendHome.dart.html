@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>FrontendHome.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+FrontendHome.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:todo_app_blue/HomePage.dart'</span>;
+
+import <span class="s1">'package:todo_app_blue/Splash%20Screen/body.dart'</span>;
+
+
+
+<span class="s2">class </span>FrontendHome <span class="s2">extends </span>StatefulWidget {
+  FrontendHome({Key key}) : <span class="s2">super</span>(key: key);
+
+  @override
+  _FrontendHomeState createState() =&gt; _FrontendHomeState();
+}
+
+<span class="s2">class </span>_FrontendHomeState <span class="s2">extends </span>State&lt;FrontendHome&gt; {
+  int _seletedItem = <span class="s3">0</span>;
+  <span class="s2">var </span>_pages = [Bodyy(), <span class="s2">null</span>, <span class="s2">null</span>];
+  <span class="s2">var </span>_pageController = PageController();
+
+  @override
+  Widget build(BuildContext context) {
+    <span class="s2">return </span>Scaffold(
+      body: PageView(
+        children: _pages,
+        physics: NeverScrollableScrollPhysics(),
+        onPageChanged: (index) {
+          setState(() {
+            _seletedItem = index;
+          });
+        },
+        controller: _pageController,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: &lt;BottomNavigationBarItem&gt;[
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text(<span class="s1">'Home'</span>)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.photo), title: Text(<span class="s1">'Photos'</span>)),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle), title: Text(<span class="s1">'Profile'</span>))
+        ],
+        currentIndex: _seletedItem,
+        onTap: (index) {
+          setState(() {
+            _seletedItem = index;
+            <span class="s4">// _pageController.animateToPage(_seletedItem,</span>
+            <span class="s4">//     duration: Duration(milliseconds: 200), curve: Curves.linear);</span>
+            <span class="s4">//</span>
+            _pageController.jumpToPage(_seletedItem);
+
+          });
+        },
+      ),
+    );
+  }
+}</pre>
+</body>
+</html>

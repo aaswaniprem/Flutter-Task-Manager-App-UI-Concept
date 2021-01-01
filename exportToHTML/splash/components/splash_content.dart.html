@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>splash_content.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+splash_content.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'../../size_config.dart'</span>;
+import <span class="s1">'../constants.dart'</span>;
+
+<span class="s2">class </span>SplashContent <span class="s2">extends </span>StatelessWidget {
+  <span class="s2">const </span>SplashContent({
+    Key key,
+    <span class="s2">this</span>.text,
+    <span class="s2">this</span>.image,
+  }) : <span class="s2">super</span>(key: key);
+  <span class="s2">final </span>String text, image;
+
+  @override
+  Widget build(BuildContext context) {
+    <span class="s2">return </span>Column(
+      children: &lt;Widget&gt;[
+        Spacer(),
+        Container(
+          child: Image.asset(
+            image,
+            height: getProportionateScreenHeight(<span class="s3">250</span>),
+            width: getProportionateScreenWidth(<span class="s3">300</span>),
+          ),
+        ),
+
+        Text(
+          <span class="s1">&quot;Manage Your Time&quot;</span>,
+          style: TextStyle(
+            fontSize: getProportionateScreenWidth(<span class="s3">25</span>),
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: getProportionateScreenWidth(<span class="s3">10.0</span>)),
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(<span class="s3">30</span>)),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Colors.black38, fontWeight: FontWeight.w600),
+          ),
+        ),
+      ],
+    );
+  }
+}
+</pre>
+</body>
+</html>

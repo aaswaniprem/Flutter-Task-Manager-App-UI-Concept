@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>frontpage.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+frontpage.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:todo_app_blue/AppColour.dart'</span>;
+import <span class="s1">'package:todo_app_blue/Profile.dart'</span>;
+
+import <span class="s1">'package:todo_app_blue/addTask.dart'</span>;
+
+import <span class="s1">'HomePage.dart'</span>;
+
+<span class="s2">class </span>SchoolManagement <span class="s2">extends </span>StatefulWidget {
+  @override
+  _SchoolManagementState createState() =&gt; _SchoolManagementState();
+}
+
+<span class="s2">class </span>_SchoolManagementState <span class="s2">extends </span>State&lt;SchoolManagement&gt; {
+  int _selectedItemIndex = <span class="s3">0</span>;
+  <span class="s2">final </span>List pages = [
+    HomePage(),
+    addTask(),
+    Profile(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    <span class="s2">return </span>Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: <span class="s3">5</span>,
+          backgroundColor: Colors.white,
+          unselectedItemColor: Colors.black26,
+          selectedItemColor: Colors.black,
+          selectedIconTheme: IconThemeData(color: AppColor.orange2),
+          currentIndex: _selectedItemIndex,
+          type: BottomNavigationBarType.fixed,
+          onTap: (int index) {
+            setState(() {
+              _selectedItemIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              title: Text(<span class="s1">&quot;&quot;</span>),
+              icon: Icon(Icons.home),
+            ),
+            BottomNavigationBarItem(
+              title: Text(<span class="s1">&quot;&quot;</span>),
+              icon: Icon(Icons.add),
+            ),
+            BottomNavigationBarItem(
+              title: Text(<span class="s1">&quot;&quot;</span>),
+              icon: Icon(Icons.person),
+            ),
+          ],
+        ),
+        body: pages[_selectedItemIndex]);
+  }
+}
+</pre>
+</body>
+</html>

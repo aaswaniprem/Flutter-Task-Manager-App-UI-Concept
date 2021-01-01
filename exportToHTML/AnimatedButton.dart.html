@@ -1,0 +1,136 @@
+<html>
+<head>
+<title>AnimatedButton.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AnimatedButton.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:todo_app_blue/AppColour.dart'</span>;
+import <span class="s1">'package:todo_app_blue/size_config.dart'</span>;
+
+<span class="s2">class </span>AnimatedButton <span class="s2">extends </span>StatefulWidget {
+  String image;
+  String text;
+
+
+  AnimatedButton({<span class="s2">this</span>.image, <span class="s2">this</span>.text});
+
+  @override
+  _AnimatedButtonState createState() =&gt; _AnimatedButtonState();
+}
+
+bool toggleValue = <span class="s2">false</span>;
+
+<span class="s2">class </span>_AnimatedButtonState <span class="s2">extends </span>State&lt;AnimatedButton&gt; {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    <span class="s2">return </span>Center(
+      child: Container(
+        height: getProportionateScreenHeight(<span class="s3">80</span>),
+        width: SizeConfig.screenWidth * <span class="s3">0.8</span>,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(<span class="s3">20.0</span>),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: AppColor.lightblue.withOpacity(<span class="s3">0.2</span>),
+                blurRadius: <span class="s3">25.0</span>, <span class="s4">// soften the shadow</span>
+                <span class="s4">//extend the shadow</span>
+                offset: Offset(
+                  <span class="s3">5.0</span>, <span class="s4">// Move to right 10  horizontally</span>
+                  <span class="s3">5.0</span>, <span class="s4">// Move to bottom 10 Vertically</span>
+                ),
+              )
+            ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              child: Image.asset(
+               widget.image,
+                height: getProportionateScreenHeight(<span class="s3">40.0</span>),
+                width: getProportionateScreenWidth(<span class="s3">40.0</span>),
+                fit: BoxFit.cover,
+              ),
+            ),
+            Text(
+             widget.text,
+              style: TextStyle(
+                  color: AppColor.textcolor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: getProportionateScreenWidth(<span class="s3">16.0</span>)),
+            ),
+            AnimatedContainer(
+              duration: Duration(milliseconds: <span class="s3">1000</span>),
+              height: getProportionateScreenHeight(<span class="s3">28.0</span>),
+              width: getProportionateScreenWidth(<span class="s3">60.0</span>),
+
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(<span class="s3">20.0</span>),
+                  color: toggleValue
+                      ? AppColor.darkblue
+                      : Colors.redAccent[<span class="s3">100</span>].withOpacity(<span class="s3">0.5</span>)),
+              child: Stack(
+                children: [
+                  AnimatedPositioned(
+                    duration: Duration(milliseconds: <span class="s3">1000</span>),
+                    curve: Curves.easeIn,
+                    top: getProportionateScreenHeight(<span class="s3">4.0</span>),
+                    left: toggleValue ? getProportionateScreenWidth(<span class="s3">20.0</span>) : <span class="s3">0.0</span>,
+                    right: toggleValue ? <span class="s3">0.0 </span>: getProportionateScreenWidth(<span class="s3">20.0</span>),
+                    child: InkWell(
+                      onTap: toggleButton,
+                      child: AnimatedSwitcher(
+                          duration: Duration(milliseconds: <span class="s3">1000</span>),
+                          transitionBuilder:
+                              (Widget child, Animation&lt;double&gt; animation) {
+                            <span class="s2">return </span>ScaleTransition(
+                              scale: animation,
+                              child: child,
+                            );
+                          },
+                          child: toggleValue
+                              ? Icon(Icons.check_circle_outline,
+                                  color: Colors.white,
+                                  size: getProportionateScreenHeight(<span class="s3">20.0</span>),
+                                  key: UniqueKey())
+                              : Icon(
+                                  Icons.remove_circle_outline,
+                                  color: Colors.red,
+                                  size: getProportionateScreenHeight(<span class="s3">20.0</span>),
+                                  key: UniqueKey(),
+                                )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  toggleButton() {
+    setState(() {
+      toggleValue = !toggleValue;
+    });
+  }
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>titleContainer.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+titleContainer.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:todo_app_blue/size_config.dart'</span>;
+
+<span class="s2">class </span>TitleContainer <span class="s2">extends </span>StatelessWidget {
+  double height;
+  double width;
+  Color color;
+  String text;
+  double fsize;
+
+  TitleContainer({<span class="s2">this</span>.height, <span class="s2">this</span>.width, <span class="s2">this</span>.color, <span class="s2">this</span>.text , <span class="s2">this</span>.fsize});
+
+  @override
+  Widget build(BuildContext context) {
+    <span class="s2">return </span>Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+            Radius.circular(getProportionateScreenHeight(<span class="s3">10.0</span>))),
+        color: color.withOpacity(<span class="s3">0.3</span>),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(color: color, fontWeight: FontWeight.w600 , fontSize: fsize),
+        ),
+      ),
+    );
+  }
+}
+</pre>
+</body>
+</html>

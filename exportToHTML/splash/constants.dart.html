@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>constants.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+constants.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/material.dart'</span>;
+
+
+import <span class="s1">'../size_config.dart'</span>;
+
+<span class="s2">const </span>kPrimaryColor = Color(<span class="s3">0xFFFF7643</span>);
+<span class="s2">const </span>kPrimaryLightColor = Color(<span class="s3">0xFFFFECDF</span>);
+<span class="s2">const </span>kPrimaryGradientColor = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(<span class="s3">0xFFFFA53E</span>), Color(<span class="s3">0xFFFF7643</span>)],
+);
+<span class="s2">const </span>kSecondaryColor = Color(<span class="s3">0xFF979797</span>);
+<span class="s2">const </span>kTextColor = Color(<span class="s3">0xFF757575</span>);
+
+<span class="s2">const </span>kAnimationDuration = Duration(milliseconds: <span class="s3">200</span>);
+
+<span class="s2">final </span>headingStyle = TextStyle(
+  fontSize: getProportionateScreenWidth(<span class="s3">28</span>),
+  fontWeight: FontWeight.bold,
+  color: Colors.black,
+  height: <span class="s3">1.5</span>,
+);
+
+<span class="s2">const </span>defaultDuration = Duration(milliseconds: <span class="s3">250</span>);
+
+<span class="s4">// Form Error</span>
+<span class="s2">final </span>RegExp emailValidatorRegExp =
+    RegExp(<span class="s1">r&quot;^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+&quot;</span>);
+<span class="s2">const </span>String kEmailNullError = <span class="s1">&quot;Please Enter your email&quot;</span>;
+<span class="s2">const </span>String kInvalidEmailError = <span class="s1">&quot;Please Enter Valid Email&quot;</span>;
+<span class="s2">const </span>String kPassNullError = <span class="s1">&quot;Please Enter your password&quot;</span>;
+<span class="s2">const </span>String kShortPassError = <span class="s1">&quot;Password is too short&quot;</span>;
+<span class="s2">const </span>String kMatchPassError = <span class="s1">&quot;Passwords don't match&quot;</span>;
+<span class="s2">const </span>String kNamelNullError = <span class="s1">&quot;Please Enter your name&quot;</span>;
+<span class="s2">const </span>String kPhoneNumberNullError = <span class="s1">&quot;Please Enter your phone number&quot;</span>;
+<span class="s2">const </span>String kAddressNullError = <span class="s1">&quot;Please Enter your address&quot;</span>;
+
+<span class="s2">final </span>otpInputDecoration = InputDecoration(
+  contentPadding:
+      EdgeInsets.symmetric(vertical: getProportionateScreenWidth(<span class="s3">15</span>)),
+  border: outlineInputBorder(),
+  focusedBorder: outlineInputBorder(),
+  enabledBorder: outlineInputBorder(),
+);
+
+OutlineInputBorder outlineInputBorder() {
+  <span class="s2">return </span>OutlineInputBorder(
+    borderRadius: BorderRadius.circular(getProportionateScreenWidth(<span class="s3">15</span>)),
+    borderSide: BorderSide(color: kTextColor),
+  );
+}
+</pre>
+</body>
+</html>

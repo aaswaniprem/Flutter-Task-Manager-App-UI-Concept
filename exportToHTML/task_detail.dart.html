@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>task_detail.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000000;}
+.s1 { color: #008000; font-weight: bold;}
+.s2 { color: #000080; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+task_detail.dart</font>
+</center></td></tr></table>
+<pre>import <span class="s1">'package:flutter/cupertino.dart'</span>;
+import <span class="s1">'package:flutter/material.dart'</span>;
+import <span class="s1">'package:todo_app_blue/AnimatedButton.dart'</span>;
+import <span class="s1">'package:todo_app_blue/AppColour.dart'</span>;
+import <span class="s1">'package:todo_app_blue/size_config.dart'</span>;
+import <span class="s1">'package:todo_app_blue/titleContainer.dart'</span>;
+
+<span class="s2">class </span>TaskDetail <span class="s2">extends </span>StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    <span class="s2">return </span>Scaffold(
+      body: Container(
+        height: SizeConfig.screenHeight,
+        width: SizeConfig.screenWidth,
+        decoration: BoxDecoration(gradient: AppColor.redbackground),
+        child: Stack(
+          children: [
+            Positioned(
+              top: <span class="s3">0</span>,
+              child: Container(
+                height: SizeConfig.screenHeight * <span class="s3">0.5</span>,
+                width: SizeConfig.screenWidth,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(<span class="s3">40.0</span>),
+                        bottomRight: Radius.circular(<span class="s3">40.0</span>)),
+                    gradient: AppColor.background2,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColor.lightblue.withOpacity(<span class="s3">0.3</span>),
+                        blurRadius: <span class="s3">50.0</span>, <span class="s4">// soften the shadow</span>
+                        spreadRadius: <span class="s3">10.0</span>, <span class="s4">//extend the shadow</span>
+                        offset: Offset(
+                          <span class="s3">0.0</span>, <span class="s4">// Move to right 10  horizontally</span>
+                          <span class="s3">12.0</span>, <span class="s4">// Move to bottom 10 Vertically</span>
+                        ),
+                      )
+                    ]),
+                child: Padding(
+                  padding: <span class="s2">const </span>EdgeInsets.symmetric(horizontal: <span class="s3">20.0</span>),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: getProportionateScreenHeight(<span class="s3">60.0</span>)),
+                          child: Container(
+                            child: Image.asset(
+                              <span class="s1">&quot;assets/task1.png&quot;</span>,
+                              height: getProportionateScreenHeight(<span class="s3">160</span>),
+                              width: getProportionateScreenWidth(<span class="s3">220</span>),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(<span class="s3">15.0</span>)),
+                      Text(
+                        <span class="s1">&quot;Colour Case Study&quot;</span>,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: getProportionateScreenWidth(<span class="s3">20.0</span>),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(<span class="s3">10.0</span>),
+                      ),
+                      Text(
+                        <span class="s1">&quot;Color theory is the basis for the primary rules and guidelines that surround color and its use them in&quot;</span>
+                        <span class="s1">&quot;creating aesthetically pleasing visuals&quot;</span>,
+                        style: TextStyle(
+                            color: Colors.black38,
+                            fontWeight: FontWeight.w400,
+                            fontSize: getProportionateScreenWidth(<span class="s3">12.0</span>)),
+                        textAlign: TextAlign.justify,
+                      ),
+                      SizedBox(
+                        height: getProportionateScreenHeight(<span class="s3">12.0</span>),
+                      ),
+                      Row(
+                        children: [
+                          TitleContainer(
+                            text: <span class="s1">&quot;Working&quot;</span>,
+                            color: Colors.blue,
+                            fsize: <span class="s3">10.0</span>,
+                            height: getProportionateScreenHeight(<span class="s3">30</span>),
+                            width: getProportionateScreenWidth(<span class="s3">80.0</span>),
+                          ),
+                          Padding(
+                            padding: <span class="s2">const </span>EdgeInsets.only(left: <span class="s3">8.0</span>),
+                            child: TitleContainer(
+                              text: <span class="s1">&quot;Productive&quot;</span>,
+                              color: Colors.red,
+                              fsize: <span class="s3">10.0</span>,
+                              height: getProportionateScreenHeight(<span class="s3">30</span>),
+                              width: getProportionateScreenWidth(<span class="s3">80.0</span>),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+                bottom: <span class="s3">0</span>,
+                child: Container(
+                  height: SizeConfig.screenHeight * <span class="s3">0.11</span>,
+                  width: SizeConfig.screenWidth,
+                  color: Colors.white,
+                  child: Center(
+                    child: EditTask(),
+                  ),
+                )),
+            Positioned(
+                bottom: SizeConfig.screenHeight * <span class="s3">0.13</span>,
+                left: <span class="s3">50</span>,
+                right: <span class="s3">50</span>,
+                child: AnimatedButton()),
+            <span class="s4">// Positioned(bottom: 220, child: TimeContainer()),</span>
+            Positioned(
+                bottom: SizeConfig.screenHeight * <span class="s3">0.25</span>,
+                child: Container(
+                  height: SizeConfig.screenHeight * <span class="s3">0.2</span>,
+                  width: SizeConfig.screenWidth,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          menuItem(
+                              title: <span class="s1">&quot;14July ,2020&quot;</span>,
+                              sub: <span class="s1">&quot;Date&quot;</span>,
+                              tcolor: Colors.blue,
+                              img: <span class="s1">&quot;assets/date.png&quot;</span>),
+                          menuItem(
+                              title: <span class="s1">&quot;GMT+6&quot;</span>,
+                              sub: <span class="s1">&quot;Time Zone&quot;</span>,
+                              tcolor: Colors.red,
+                              img: <span class="s1">&quot;assets/time.png&quot;</span>),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          menuItem(
+                              title: <span class="s1">&quot;4:30 PM &quot;</span>,
+                              sub: <span class="s1">&quot;Task Start&quot;</span>,
+                              tcolor: Colors.orange,
+                              img: <span class="s1">&quot;assets/taskh.png&quot;</span>),
+                          menuItem(
+                              title: <span class="s1">&quot;6:30 PM&quot;</span>,
+                              sub: <span class="s1">&quot;Task End&quot;</span>,
+                              tcolor: AppColor.darkblue,
+                              img: <span class="s1">&quot;assets/taskend.png&quot;</span>),
+                        ],
+                      )
+                    ],
+                  ),
+                ))
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget EditTask() {
+    <span class="s2">return </span>Container(
+      height: getProportionateScreenHeight(<span class="s3">60</span>),
+      width: SizeConfig.screenWidth * <span class="s3">0.8</span>,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(<span class="s3">15.0</span>),
+          gradient: AppColor.bluebutton),
+      child: Center(
+        child: Text(
+          <span class="s1">&quot;Edit Task&quot;</span>,
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: getProportionateScreenWidth(<span class="s3">15.0</span>)),
+        ),
+      ),
+    );
+  }
+
+  Widget menuItem({String title, String sub, String img, Color tcolor}) {
+    <span class="s2">return </span>Container(
+      height: getProportionateScreenHeight(<span class="s3">65.0</span>),
+      width: getProportionateScreenWidth(<span class="s3">160.0</span>),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(<span class="s3">9.0</span>)),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: AppColor.lightblue.withOpacity(<span class="s3">0.2</span>),
+              blurRadius: <span class="s3">30.0</span>, <span class="s4">// soften the shadow</span>
+              spreadRadius: <span class="s3">5.0</span>, <span class="s4">//extend the shadow</span>
+              offset: Offset(
+                <span class="s3">0.0</span>, <span class="s4">// Move to right 10  horizontally</span>
+                <span class="s3">12.0</span>, <span class="s4">// Move to bottom 10 Vertically</span>
+              ),
+            )
+          ]),
+      child: Padding(
+        padding: EdgeInsets.only(left: getProportionateScreenWidth(<span class="s3">10.0</span>)),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                child: Image.asset(
+              img,
+              height: getProportionateScreenHeight(<span class="s3">40.0</span>),
+              width: getProportionateScreenWidth(<span class="s3">40.0</span>),
+              fit: BoxFit.cover,
+            )),
+            Padding(
+              padding: EdgeInsets.only(left: getProportionateScreenWidth(<span class="s3">8.0</span>)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: tcolor,
+                          fontSize: getProportionateScreenWidth(<span class="s3">13.0</span>))),
+                  Text(
+                    sub,
+                    style: TextStyle(
+                        color: Colors.black45,
+                        fontWeight: FontWeight.w600,
+                        fontSize: getProportionateScreenWidth(<span class="s3">12.0</span>)),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget TimeContainer() {
+    <span class="s2">return </span>Container(
+      color: Colors.yellow,
+      height: SizeConfig.screenHeight * <span class="s3">0.09</span>,
+      width: SizeConfig.screenWidth * <span class="s3">0.8</span>,
+    );
+  }
+}
+</pre>
+</body>
+</html>

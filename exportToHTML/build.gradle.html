@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>build.gradle</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000043; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #0000ff;}
+.s4 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+build.gradle</font>
+</center></td></tr></table>
+<pre><span class="s0">def </span>localProperties = <span class="s0">new </span>Properties()
+<span class="s0">def </span>localPropertiesFile = rootProject.file(<span class="s2">'local.properties'</span>)
+<span class="s0">if </span>(localPropertiesFile.exists()) {
+    localPropertiesFile.withReader(<span class="s2">'UTF-8'</span>) { reader -&gt;
+        localProperties.load(reader)
+    }
+}
+
+<span class="s0">def </span>flutterRoot = localProperties.getProperty(<span class="s2">'flutter.sdk'</span>)
+<span class="s0">if </span>(flutterRoot == <span class="s0">null</span>) {
+    <span class="s0">throw new </span>GradleException(<span class="s2">&quot;Flutter SDK not found. Define location with flutter.sdk in the local.properties file.&quot;</span>)
+}
+
+<span class="s0">def </span>flutterVersionCode = localProperties.getProperty(<span class="s2">'flutter.versionCode'</span>)
+<span class="s0">if </span>(flutterVersionCode == <span class="s0">null</span>) {
+    flutterVersionCode = <span class="s2">'1'</span>
+}
+
+<span class="s0">def </span>flutterVersionName = localProperties.getProperty(<span class="s2">'flutter.versionName'</span>)
+<span class="s0">if </span>(flutterVersionName == <span class="s0">null</span>) {
+    flutterVersionName = <span class="s2">'1.0'</span>
+}
+
+apply plugin: <span class="s2">'com.android.application'</span>
+apply plugin: <span class="s2">'kotlin-android'</span>
+apply from: <span class="s2">&quot;</span>$flutterRoot<span class="s2">/packages/flutter_tools/gradle/flutter.gradle&quot;</span>
+
+android {
+    compileSdkVersion <span class="s3">29</span>
+
+    sourceSets {
+        main.java.srcDirs += <span class="s2">'src/main/kotlin'</span>
+    }
+
+    lintOptions {
+        disable <span class="s2">'InvalidPackage'</span>
+    }
+
+    defaultConfig {
+        <span class="s4">// TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).</span>
+        applicationId <span class="s2">&quot;com.example.todo_app_blue&quot;</span>
+        minSdkVersion <span class="s3">16</span>
+        targetSdkVersion <span class="s3">29</span>
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    buildTypes {
+        release {
+            <span class="s4">// TODO: Add your own signing config for the release build.</span>
+            <span class="s4">// Signing with the debug keys for now, so `flutter run --release` works.</span>
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source <span class="s2">'../..'</span>
+}
+
+dependencies {
+    implementation <span class="s2">&quot;org.jetbrains.kotlin:kotlin-stdlib-jdk7:</span>$kotlin_version<span class="s2">&quot;</span>
+}
+</pre>
+</body>
+</html>
